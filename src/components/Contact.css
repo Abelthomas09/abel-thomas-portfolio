@@ -1,0 +1,122 @@
+.contact-section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.big-cta {
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.contact-sub {
+    font-family: var(--font-sub);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    color: var(--secondary-text);
+    margin-bottom: 80px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    margin-bottom: 150px;
+}
+
+.email-link {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    color: var(--text-color);
+    margin-bottom: 60px;
+    border-bottom: 2px solid transparent;
+    width: fit-content;
+}
+
+.email-link:hover {
+    border-bottom-color: #fff;
+}
+
+.social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-list a {
+    font-family: var(--font-sub);
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    width: fit-content;
+}
+
+.social-list a:hover {
+    color: #fff;
+}
+
+/* Minimal Form */
+.minimal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line-color);
+    padding: 15px 0;
+    color: var(--text-color);
+    font-family: var(--font-sub);
+    font-size: 1.1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-bottom-color: #fff;
+}
+
+.input-group textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    transition: gap 0.3s;
+}
+
+.submit-btn:hover {
+    gap: 20px;
+    color: var(--text-color);
+}
+
+.footer-credits {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-sub);
+    font-size: 0.8rem;
+    color: #444;
+    border-top: 1px solid var(--line-color);
+    /* Very subtle line */
+    padding-top: 30px;
+}
+
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}

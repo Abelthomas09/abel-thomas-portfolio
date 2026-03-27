@@ -1,0 +1,29 @@
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 40px;
+    /* Row gap, Col gap */
+}
+
+.skill-word {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--secondary-text);
+    /* Use theme variable */
+    transition: all 0.4s ease;
+    line-height: 0.9;
+    cursor: default;
+    -webkit-text-stroke: 1px transparent;
+}
+
+.skill-word:hover {
+    color: var(--text-color);
+    /* Correctly flips between white/black */
+    transform: translateX(10px);
+}
+
+@media (max-width: 768px) {
+    .skill-word {
+        font-size: 2.5rem;
+    }
+}

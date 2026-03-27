@@ -1,0 +1,24 @@
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Hide default cursor only when custom one is active/visible if desired, 
+   but usually done on body */
+body {
+    cursor: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .cursor {
+        display: none;
+    }
+
+    body {
+        cursor: auto;
+    }
+}

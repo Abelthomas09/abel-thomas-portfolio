@@ -1,0 +1,85 @@
+.bold-hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+}
+
+.hero-header {
+    position: relative;
+}
+
+.name-line {
+    font-size: clamp(5rem, 18vw, 14rem);
+    line-height: 0.85;
+    margin: 0;
+    letter-spacing: -0.02em;
+    color: var(--text-color);
+    /* Updated to use variable */
+}
+
+/* Outline text effect */
+.name-line.outlined {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--line-color);
+    position: relative;
+    z-index: -1;
+}
+
+.role-label {
+    font-family: var(--font-sub);
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+    color: var(--secondary-text);
+    font-weight: 500;
+}
+
+.hero-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 10vh;
+    font-family: var(--font-sub);
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--line-color);
+    padding-top: 20px;
+}
+
+.arrow-icon {
+    margin-left: 10px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}

@@ -1,0 +1,76 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.header.scrolled {
+    background: rgba(15, 15, 15, 0.9);
+    padding: 15px 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.logo .dot {
+    color: var(--accent-color);
+}
+
+.nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.nav li {
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.nav li:hover {
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+.nav li::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav li:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+        /* Mobile menu to be added if needed, for now keeping it simple or I'll implement a hamburger later */
+    }
+}

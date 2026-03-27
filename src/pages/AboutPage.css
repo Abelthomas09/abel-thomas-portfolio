@@ -1,0 +1,231 @@
+.page-about {
+    padding-top: 140px;
+    /* Offset for navbar */
+    min-height: 100vh;
+}
+
+#about {
+    padding-bottom: 160px;
+}
+
+.about-subsection {
+    padding: 120px 0;
+    border-top: 1px solid var(--line-color);
+}
+
+.about-subsection h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 80px;
+    color: var(--text-color);
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+}
+
+.service-item h3 {
+    font-family: var(--font-sub);
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: var(--text-color);
+    letter-spacing: 1px;
+}
+
+.service-item p {
+    color: var(--secondary-text);
+    line-height: 1.8;
+}
+
+/* Journey / Experience List */
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.experience-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    /* Date/Company on left, Role/Details on right */
+    gap: 40px;
+}
+
+.exp-meta {
+    font-family: var(--font-sub);
+    color: var(--secondary-text);
+    text-align: right;
+    padding-top: 10px;
+    border-right: 1px solid var(--line-color);
+    padding-right: 40px;
+}
+
+.exp-date {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.exp-company {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.exp-content {
+    padding-top: 0;
+}
+
+.exp-role {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.exp-points {
+    list-style: none;
+}
+
+.exp-points li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    color: var(--secondary-text);
+    line-height: 1.6;
+}
+
+.exp-points li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--line-color);
+}
+
+/* Education Timeline */
+.education-timeline {
+    position: relative;
+    padding-left: 60px;
+    margin-top: 60px;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line-color);
+}
+
+.timeline-item {
+    margin-bottom: 120px;
+    position: relative;
+}
+
+.timeline-node {
+    position: absolute;
+    left: -50px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-color);
+    border: 2px solid var(--text-color);
+    border-radius: 50%;
+    z-index: 2;
+    transition: background 0.3s;
+}
+
+.timeline-item:hover .timeline-node {
+    background: var(--text-color);
+}
+
+.edu-year {
+    font-family: var(--font-sub);
+    color: var(--secondary-text);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.edu-level {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 10px 0;
+    line-height: 1;
+    color: var(--text-color);
+}
+
+.edu-school {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+    font-family: var(--font-main);
+    color: var(--secondary-text);
+}
+
+.edu-image-wrapper {
+    overflow: hidden;
+    max-width: 600px;
+    border: 1px solid var(--line-color);
+    aspect-ratio: 16 / 9;
+    /* Ensures all images have same shape */
+    width: 100%;
+}
+
+.edu-image {
+    width: 100%;
+    height: 100%;
+    /* Fill wrapper */
+    object-fit: cover;
+    /* Clean crop */
+    display: block;
+    filter: grayscale(100%);
+    transition: all 0.5s ease;
+}
+
+.edu-image:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    .education-timeline {
+        padding-left: 30px;
+    }
+
+    .timeline-line {
+        left: 10px;
+    }
+
+    .timeline-node {
+        left: -25px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .timeline-item {
+        margin-bottom: 80px;
+    }
+
+    .page-about {
+        padding-top: 100px;
+    }
+
+    /* Experience Mobile */
+    .experience-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .exp-meta {
+        text-align: left;
+        border-right: none;
+        border-bottom: 1px solid var(--line-color);
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+}

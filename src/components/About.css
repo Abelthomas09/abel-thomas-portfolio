@@ -1,0 +1,87 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 3fr;
+  gap: 80px;
+  align-items: stretch;
+  /* CRITICAL: This forces both columns to be equal height */
+}
+
+.about-image-col {
+  position: relative;
+  height: 100%;
+  /* Take full height of the grid cell */
+  min-height: 400px;
+  /* Minimum height for visual balance */
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  /* Force wrapper to fill column */
+  overflow: hidden;
+  border-radius: 4px;
+
+  /* MONOCHROME STYLE RESTORED */
+  filter: grayscale(100%) contrast(1.2);
+  transition: all 0.5s ease;
+}
+
+.image-wrapper:hover {
+  filter: grayscale(0%) contrast(1);
+  /* Color on hover */
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  /* Force image to fill wrapper */
+  display: block;
+  object-fit: cover;
+  /* Crop top/bottom to fit height without stretching */
+  object-position: center top;
+  /* Keep face visible */
+}
+
+.about-headline {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  font-weight: 400;
+  margin-bottom: 60px;
+  max-width: 25ch;
+  color: var(--text-color);
+}
+
+.about-headline .highlight {
+  color: var(--secondary-text);
+  /* Reverted to grey highlight */
+  font-style: italic;
+  font-family: var(--font-main);
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #aaa;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Vertically center the text blocks */
+  padding-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-image-col {
+    height: 500px;
+    /* Fixed height for mobile */
+  }
+}

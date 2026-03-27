@@ -1,0 +1,40 @@
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 60px;
+}
+
+.why-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.why-number {
+    font-family: var(--font-sub);
+    font-size: 1rem;
+    color: var(--secondary-text);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.why-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.why-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+}
