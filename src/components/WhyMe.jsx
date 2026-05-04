@@ -1,6 +1,7 @@
 import React from 'react';
 import './WhyMe.css';
 import { motion } from 'framer-motion';
+import SpotlightCard from './ui/SpotlightCard';
 
 const reasons = [
   {
@@ -24,21 +25,32 @@ const WhyMe = () => {
   return (
     <section className="section why-me-section">
       <div className="container">
-        <div className="why-grid">
-          {reasons.map((item, index) => (
-            <motion.div 
-               key={item.id} 
-               className="why-item"
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ delay: index * 0.2 }}
-            >
-              <div className="why-number">{item.id}</div>
-              <h3 className="why-title">{item.title}</h3>
-              <p className="why-desc">{item.desc}</p>
-            </motion.div>
-          ))}
+        <div className="why-layout">
+          <div className="why-sticky-sidebar">
+            <div className="section-label">THE APPROACH</div>
+            <h2 className="why-heading">Philosophy<br />& Process</h2>
+          </div>
+          
+          <div className="why-scroll-list">
+            {reasons.map((item) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0.18, y: 28, scale: 0.985 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: false, margin: "-14% 0px -14% 0px" }}
+                transition={{ duration: 0.55, ease: "easeOut" }}
+                className="why-card-wrapper"
+              >
+                <SpotlightCard className="why-card">
+                  <div className="why-card-inner">
+                    <div className="why-number">{item.id}</div>
+                    <h3 className="why-title">{item.title}</h3>
+                    <p className="why-desc">{item.desc}</p>
+                  </div>
+                </SpotlightCard>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

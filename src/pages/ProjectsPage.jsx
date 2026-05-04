@@ -1,15 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import '../components/Projects.css'; // Reusing styles, adding specific overrides
 
-// Detailed Data with Placeholders
 const detailedProjects = [
   {
     id: '01',
     title: 'GOLDEN FORK&SPOON Restaurant App',
-    desc: 'A comprehensive dashboard for managing products, orders, and analytics. Built with performance in mind.',
-    tech: ['React', 'Redux', 'MongoDB'],
+    desc: 'A responsive restaurant web app with a polished menu browsing experience, ordering flow, and clean customer-facing UI.',
+    tech: ['React', 'CSS3', 'Responsive UI', 'Vercel'],
     github: 'https://github.com/Abelthomas09/Golden-ForkandSpoon-Restaurant-App',
     live: 'https://golden-forkand-spoon-restaurant-app.vercel.app/',
     image: '/images/GoldenForkSpoon.png'
@@ -17,8 +16,8 @@ const detailedProjects = [
   {
     id: '02',
     title: 'SnapFix- House Service App',
-    desc: 'Real-time collaborative task management with websockets and drag-and-drop interface.',
-    tech: ['React', 'Node.js', 'Express', 'MongoDB'],
+    desc: 'A MERN house-service booking app for finding services, managing requests, and connecting users with providers.',
+    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'REST APIs'],
     github: 'https://github.com/Abelthomas09/SnapFix-Frontend',
     live: 'https://snap-fix-frontend.vercel.app/',
     image: '/images/SnapFix.png'
@@ -26,8 +25,8 @@ const detailedProjects = [
   {
     id: '03',
     title: 'Employee Management App',
-    desc: 'AI-powered weather forecasting app that suggests outfits and activities based on conditions.',
-    tech: ['OpenAI', 'Next.js', 'Tailwind'],
+    desc: 'A CRUD-focused employee management system with structured employee records, clean workflows, and responsive screens.',
+    tech: ['React', 'JavaScript', 'CSS3', 'CRUD', 'Netlify'],
     github: 'https://github.com/Abelthomas09/Employee-Management-App',
     live: 'https://employees-management-app-abel.netlify.app/',
     image: '/images/EmploymentManagement.png'
@@ -45,7 +44,7 @@ const ProjectsPage = () => {
         gap: '40px'
       }}>
         {detailedProjects.map((project, index) => (
-          <motion.div 
+          <Motion.div
             key={project.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,7 +88,7 @@ const ProjectsPage = () => {
                 <FaExternalLinkAlt /> LIVE DEMO
               </a>
             </div>
-          </motion.div>
+          </Motion.div>
         ))}
       </div>
     </div>

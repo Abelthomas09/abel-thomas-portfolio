@@ -1,41 +1,32 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion as Motion } from 'framer-motion';
 import './Projects.css';
 
 const projects = [
   {
     id: '01',
-    title: 'E-COMMERCE DASH',
-    category: 'React / Redux',
-    year: '2023',
-    link: 'https://github.com/Abelthomas09/SnapFix-Frontend'
+    title: 'GOLDEN FORK&SPOON',
+    category: 'React / Restaurant App',
+    year: '2025',
+    link: 'https://golden-forkand-spoon-restaurant-app.vercel.app/'
   },
   {
     id: '02',
-    title: 'TASK MANAGER',
-    category: 'Node.js / Socket.io',
-    year: '2023',
-    link: '#'
+    title: 'SNAPFIX',
+    category: 'MERN / Service Booking',
+    year: '2025',
+    link: 'https://snap-fix-frontend.vercel.app/'
   },
   {
     id: '03',
-    title: 'WEATHER AI',
-    category: 'OpenAI / Tailwind',
-    year: '2022',
-    link: '#'
-  },
-  {
-    id: '04',
-    title: 'IMAGE GEN',
-    category: 'React / Three.js',
-    year: '2022',
-    link: '#'
+    title: 'EMPLOYEE MANAGEMENT',
+    category: 'React / CRUD App',
+    year: '2025',
+    link: 'https://employees-management-app-abel.netlify.app/'
   }
 ];
 
 const Projects = () => {
-  const [hoveredProject, setHoveredProject] = useState(null);
-
   return (
     <section id="projects" className="section projects-section">
       <div className="container">
@@ -43,14 +34,15 @@ const Projects = () => {
         
         <div className="project-list">
           {projects.map((project) => (
-            <motion.div 
+            <Motion.a
               key={project.id}
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
               className="project-item clickable"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
             >
               <div className="id-col">{project.id}</div>
               <div className="title-col">
@@ -60,7 +52,7 @@ const Projects = () => {
                 <span className="project-category">{project.category}</span>
                 <span className="project-year">{project.year}</span>
               </div>
-            </motion.div>
+            </Motion.a>
           ))}
         </div>
       </div>

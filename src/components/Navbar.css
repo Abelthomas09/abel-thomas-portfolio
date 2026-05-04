@@ -75,13 +75,35 @@
     align-items: center;
 }
 
+.menu-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: var(--container-width);
+    padding: 0 5vw;
+    gap: 60px;
+}
+
 .menu-links {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100%;
-    max-width: var(--container-width);
-    padding: 0 5vw;
+    flex: 1;
+}
+
+.menu-profile-wrapper {
+    display: none;
+    width: 380px;
+    height: 540px;
+    perspective: 1000px;
+    flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+    .menu-profile-wrapper {
+        display: block;
+    }
 }
 
 .menu-link {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './About.css';
+import ProfileCard from './ui/ProfileCard';
 
 const About = () => {
   return (
@@ -15,7 +16,17 @@ const About = () => {
                transition={{ duration: 0.6 }}
                className="image-wrapper"
              >
-               <img src="/profile.jpg" alt="Abel Thomas" className="profile-img" />
+               <ProfileCard 
+                  name="Abel Thomas"
+                  title="UI Engineer & Frontend Developer"
+                  handle="abelthomas"
+                  status="Open to new projects"
+                  contactText="Say Hello"
+                  avatarUrl="/profile.jpg"
+                  showUserInfo={false}
+                  enableTilt={true}
+                  behindGlowEnabled={true}
+               />
              </motion.div>
           </div>
           

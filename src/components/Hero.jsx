@@ -2,6 +2,8 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaArrowDown } from 'react-icons/fa';
 import './Hero.css';
+import Galaxy from './ui/Galaxy';
+import './ui/Galaxy.css';
 
 const Hero = () => {
   const { scrollY } = useScroll();
@@ -10,6 +12,23 @@ const Hero = () => {
   
   return (
     <section className="bold-hero">
+      <div className="hero-galaxy-layer" aria-hidden="true">
+        <Galaxy
+          mouseRepulsion
+          mouseInteraction
+          density={1.1}
+          glowIntensity={0.26}
+          saturation={0}
+          hueShift={210}
+          twinkleIntensity={0.22}
+          rotationSpeed={0.06}
+          repulsionStrength={1.8}
+          autoCenterRepulsion={0}
+          starSpeed={0.45}
+          speed={0.85}
+        />
+      </div>
+      <div className="hero-vignette" aria-hidden="true" />
       <div className="container">
         <motion.div 
           className="hero-header"

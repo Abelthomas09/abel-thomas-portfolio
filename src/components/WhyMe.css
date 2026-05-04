@@ -1,40 +1,104 @@
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 60px;
+.why-me-section {
+    padding-bottom: 200px; /* Leave room for scroll */
 }
 
-.why-item {
+.why-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+    padding-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.why-sticky-sidebar {
+    position: sticky;
+    top: 20vh;
+    width: 30%;
+    flex-shrink: 0;
+}
+
+.why-heading {
+    font-size: clamp(3rem, 5vw, 4rem);
+    line-height: 1;
+    margin-top: 20px;
+}
+
+.why-scroll-list {
+    width: 70%;
     display: flex;
     flex-direction: column;
+    gap: 4vh;
+    padding-bottom: 14vh;
+}
+
+.why-card-wrapper {
+    height: auto;
+    width: 100%;
+}
+
+.why-card {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.why-card-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
+    height: 100%;
 }
 
 .why-number {
     font-family: var(--font-sub);
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--secondary-text);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
+    letter-spacing: 0.1em;
 }
 
 .why-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 20px;
     color: var(--text-color);
+    line-height: 1;
 }
 
 .why-desc {
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.6;
-    opacity: 0.8;
+    color: var(--secondary-text);
+    margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+    .why-title {
+        font-size: 2.8rem;
+    }
 }
 
 @media (max-width: 900px) {
-    .why-grid {
-        grid-template-columns: 1fr;
+    .why-layout {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .why-sticky-sidebar {
+        position: relative;
+        top: 0;
+        width: 100%;
+    }
+    
+    .why-scroll-list {
+        width: 100%;
+        gap: 3vh;
+        padding-bottom: 6vh;
+    }
+    
+    .why-card-inner {
+        padding: 40px;
     }
 }

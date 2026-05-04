@@ -98,9 +98,31 @@
     transition: gap 0.3s;
 }
 
+.submit-btn:disabled {
+    color: var(--secondary-text);
+    cursor: wait;
+}
+
 .submit-btn:hover {
     gap: 20px;
     color: var(--text-color);
+}
+
+.submit-btn:disabled:hover {
+    gap: 10px;
+    color: var(--secondary-text);
+}
+
+.form-feedback {
+    font-family: var(--font-sub);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: var(--text-color);
+    margin-top: -20px;
+}
+
+.form-feedback.is-error {
+    color: #ff6b6b;
 }
 
 .footer-credits {

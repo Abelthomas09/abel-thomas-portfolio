@@ -1,4 +1,4 @@
-.cursor {
+.cursor-dot, .cursor-ring {
     position: fixed;
     top: 0;
     left: 0;
@@ -7,14 +7,24 @@
     z-index: 9999;
 }
 
-/* Hide default cursor only when custom one is active/visible if desired, 
-   but usually done on body */
+/* Hide default cursor only when custom one is active/visible if desired */
 body {
     cursor: none;
 }
 
+.smoke-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+    mix-blend-mode: difference;
+}
+
 @media (hover: none) and (pointer: coarse) {
-    .cursor {
+    .cursor-dot, .cursor-ring, .smoke-canvas {
         display: none;
     }
 

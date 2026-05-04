@@ -8,6 +8,31 @@
   --secondary-text: #888888;
   --line-color: rgba(255, 255, 255, 0.1);
   --noise-opacity: 0.05;
+  --hero-bg:
+    radial-gradient(circle at top center, rgba(255, 255, 255, 0.06), transparent 30%),
+    linear-gradient(180deg, #040404 0%, #080808 100%);
+  --hero-vignette:
+    radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.18) 55%, rgba(0, 0, 0, 0.72) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3), transparent 25%, transparent 75%, rgba(0, 0, 0, 0.45));
+  --hero-galaxy-opacity: 0.85;
+  --profile-card-surface: rgba(7, 7, 10, 0.92);
+  --profile-card-inner: rgba(10, 10, 14, 0.92);
+  --profile-card-inner-gradient: linear-gradient(145deg, #60496e8c 0%, #71c4ff44 100%);
+  --profile-card-border: rgba(255, 255, 255, 0.1);
+  --profile-card-border-strong: rgba(255, 255, 255, 0.4);
+  --profile-card-shadow: rgba(0, 0, 0, 0.78);
+  --profile-card-text: #f5f7ff;
+  --profile-card-text-muted: rgba(245, 247, 255, 0.88);
+  --profile-card-text-soft: rgba(255, 255, 255, 0.72);
+  --profile-card-text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+  --profile-card-panel: rgba(255, 255, 255, 0.1);
+  --profile-card-button: rgba(255, 255, 255, 0.08);
+  --profile-card-glow: rgba(125, 190, 255, 0.67);
+  --profile-card-avatar-blend: luminosity;
+  --profile-card-shine-opacity: 1;
+  --profile-card-shine-blend: color-dodge;
+  --profile-card-glare-opacity: 1;
+  --profile-card-glare-blend: overlay;
 
   --font-main: 'Inter', sans-serif;
   --font-display: 'Anton', sans-serif;
@@ -24,6 +49,31 @@
   --secondary-text: #555555;
   --line-color: rgba(0, 0, 0, 0.1);
   --noise-opacity: 0.03;
+  --hero-bg:
+    radial-gradient(circle at top center, rgba(0, 0, 0, 0.06), transparent 34%),
+    linear-gradient(180deg, #f5f5f3 0%, #ffffff 100%);
+  --hero-vignette:
+    radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.02) 45%, rgba(0, 0, 0, 0.07) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 22%, transparent 78%, rgba(0, 0, 0, 0.06));
+  --hero-galaxy-opacity: 0.32;
+  --profile-card-surface: rgba(247, 247, 244, 0.94);
+  --profile-card-inner: rgba(255, 255, 255, 0.94);
+  --profile-card-inner-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(236, 239, 243, 0.1) 100%);
+  --profile-card-border: rgba(0, 0, 0, 0.1);
+  --profile-card-border-strong: rgba(0, 0, 0, 0.22);
+  --profile-card-shadow: rgba(90, 84, 74, 0.18);
+  --profile-card-text: #111111;
+  --profile-card-text-muted: rgba(17, 17, 17, 0.82);
+  --profile-card-text-soft: rgba(17, 17, 17, 0.62);
+  --profile-card-text-shadow: 0 1px 4px rgba(255, 255, 255, 0.45);
+  --profile-card-panel: rgba(255, 255, 255, 0.62);
+  --profile-card-button: rgba(255, 255, 255, 0.75);
+  --profile-card-glow: rgba(180, 190, 210, 0.28);
+  --profile-card-avatar-blend: normal;
+  --profile-card-shine-opacity: 0.18;
+  --profile-card-shine-blend: soft-light;
+  --profile-card-glare-opacity: 0.08;
+  --profile-card-glare-blend: soft-light;
   /* Slightly subtler noise on white */
 }
 
