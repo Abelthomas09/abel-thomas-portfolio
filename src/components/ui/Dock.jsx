@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion as Motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaHome, FaUser, FaCode, FaBriefcase, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import './Dock.css';
 
@@ -16,7 +16,7 @@ const Dock = () => {
 
   return (
     <div className="dock-container">
-      <motion.div
+      <Motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
         className="dock"
@@ -30,7 +30,7 @@ const Dock = () => {
         {/* Socials in Dock */}
         <DockItem mouseX={mouseX} item={{ icon: <FaGithub />, id: 'github', label: 'GitHub', link: 'https://github.com/Abelthomas09' }} />
         <DockItem mouseX={mouseX} item={{ icon: <FaLinkedin />, id: 'linkedin', label: 'LinkedIn', link: 'https://www.linkedin.com/in/abel-thomas09' }} />
-      </motion.div>
+      </Motion.div>
     </div>
   );
 };
@@ -56,7 +56,7 @@ function DockItem({ mouseX, item }) {
   };
 
   return (
-    <motion.div
+    <Motion.div
       ref={ref}
       style={{ width }}
       className="dock-item clickable"
@@ -65,7 +65,7 @@ function DockItem({ mouseX, item }) {
       <div className="dock-icon-wrapper">
          {item.icon}
       </div>
-    </motion.div>
+    </Motion.div>
   );
 }
 

@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
+const getInitialTheme = () => {
+  if (typeof window === 'undefined') return 'dark';
+  return localStorage.getItem('theme') || 'dark';
+};
+
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
-    // Check local storage or system preference
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-      setTheme(storedTheme);
-      document.documentElement.setAttribute('data-theme', storedTheme);
-    }
-  }, []);
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
   };
 
   return (
-    <motion.button 
+    <Motion.button 
       onClick={toggleTheme}
       className="clickable"
       initial={{ opacity: 0 }}
@@ -38,7 +37,7 @@ const ThemeToggle = () => {
       }}
     >
       {theme === 'dark' ? <FaSun /> : <FaMoon />}
-    </motion.button>
+    </Motion.button>
   );
 };
 

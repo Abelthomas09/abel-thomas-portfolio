@@ -190,6 +190,7 @@ export default function Galaxy({
   autoCenterRepulsion = 0,
   transparent = true,
   className = '',
+  onReady,
   ...rest
 }) {
   const containerRef = useRef(null);
@@ -205,7 +206,7 @@ export default function Galaxy({
     const renderer = new Renderer({
       alpha: transparent,
       premultipliedAlpha: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
+      dpr: Math.min(window.devicePixelRatio || 1, 1.25)
     });
     const { gl } = renderer;
 
@@ -219,6 +220,7 @@ export default function Galaxy({
 
     let program;
     let animationFrameId;
+    let hasRenderedFirstFrame = false;
 
     const updateResolution = () => {
       if (!container) return;
@@ -266,6 +268,7 @@ export default function Galaxy({
 
     const animate = time => {
       animationFrameId = window.requestAnimationFrame(animate);
+      if (document.hidden) return;
 
       if (!disableAnimation) {
         program.uniforms.uTime.value = time * 0.001;
@@ -283,6 +286,11 @@ export default function Galaxy({
       program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
 
       renderer.render({ scene: mesh });
+
+      if (!hasRenderedFirstFrame) {
+        hasRenderedFirstFrame = true;
+        onReady?.();
+      }
     };
 
     const handleMouseMove = event => {
@@ -335,6 +343,7 @@ export default function Galaxy({
     saturation,
     speed,
     starSpeed,
+    onReady,
     transparent,
     twinkleIntensity
   ]);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ThemeToggle from './ui/ThemeToggle';
 import ProfileCard from './ui/ProfileCard';
@@ -38,7 +38,7 @@ const Navbar = () => {
       {/* Fullscreen Overlay Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <Motion.div 
             className="menu-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -46,7 +46,7 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="menu-content">
-              <motion.div 
+              <Motion.div 
                 className="menu-links"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -63,9 +63,9 @@ const Navbar = () => {
                     <span className="link-name">{link.name}</span>
                   </NavLink>
                 ))}
-              </motion.div>
+              </Motion.div>
 
-              <motion.div
+              <Motion.div
                 className="menu-profile-wrapper"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -82,9 +82,9 @@ const Navbar = () => {
                   enableTilt={true}
                   behindGlowEnabled={true}
                 />
-              </motion.div>
+              </Motion.div>
             </div>
-          </motion.div>
+          </Motion.div>
         )}
       </AnimatePresence>
     </>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import './GridBackground.css';
 
 const GridBackground = () => {
@@ -9,7 +9,7 @@ const GridBackground = () => {
       <div className="grid-pattern"></div>
       
       {/* Moving gradient orb */}
-      <motion.div 
+      <Motion.div 
         className="orb"
         animate={{
           x: [0, 100, -100, 0],

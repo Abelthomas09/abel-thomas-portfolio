@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion as Motion } from 'framer-motion';
 
 const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
 
 const DecryptedText = ({ text, className = "", speed = 50, maxIterations = 10 }) => {
   const [displayText, setDisplayText] = useState(text);
-  const [isHovering, setIsHovering] = useState(false);
   const intervalRef = useRef(null);
 
-  const scramble = () => {
+  const scramble = useCallback(() => {
     let iteration = 0;
     
     clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
-      setDisplayText((prev) => 
+      setDisplayText(
         text
           .split("")
           .map((letter, index) => {
@@ -32,21 +31,21 @@ const DecryptedText = ({ text, className = "", speed = 50, maxIterations = 10 })
 
       iteration += 1 / (maxIterations / text.length); 
     }, speed);
-  };
+  }, [maxIterations, speed, text]);
 
   useEffect(() => {
     scramble();
     return () => clearInterval(intervalRef.current);
-  }, [text]);
+  }, [scramble]);
 
   return (
-    <motion.span
+    <Motion.span
       className={className}
       onMouseEnter={scramble}
       style={{ display: 'inline-block', fontFamily: 'monospace' }} // Monospace for alignment
     >
       {displayText}
-    </motion.span>
+    </Motion.span>
   );
 };
 

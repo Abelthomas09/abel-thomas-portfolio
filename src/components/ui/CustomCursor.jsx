@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion, useMotionValue, useSpring } from 'framer-motion';
 import './CustomCursor.css';
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const canvasRef = useRef(null);
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  const ringX = useSpring(cursorX, { mass: 0.2, stiffness: 100, damping: 15 });
+  const ringY = useSpring(cursorY, { mass: 0.2, stiffness: 100, damping: 15 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,6 +18,7 @@ const CustomCursor = () => {
     let animationFrameId;
     let particles = [];
     let lastMouse = { x: null, y: null };
+    let isRendering = false;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -24,16 +28,14 @@ const CustomCursor = () => {
     window.addEventListener('resize', resizeCanvas);
 
     const mouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      });
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
 
       if (lastMouse.x !== null) {
         const dx = e.clientX - lastMouse.x;
         const dy = e.clientY - lastMouse.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const steps = Math.max(1, Math.floor(distance / 10));
+        const steps = Math.min(4, Math.max(1, Math.floor(distance / 18)));
         
         for (let i = 0; i < steps; i++) {
           const px = lastMouse.x + (dx * i) / steps;
@@ -45,11 +47,15 @@ const CustomCursor = () => {
             vx: (Math.random() - 0.5) * 0.8,
             vy: (Math.random() - 0.5) * 0.8 - 0.5,
             life: 1,
-            size: Math.random() * 20 + 20, // 20 to 40 radius for puffiness
+            size: Math.random() * 14 + 16,
           });
+        }
+        if (particles.length > 90) {
+          particles.splice(0, particles.length - 90);
         }
       }
       lastMouse = { x: e.clientX, y: e.clientY };
+      if (!isRendering) render();
     };
 
     const handleMouseOver = (e) => {
@@ -64,6 +70,7 @@ const CustomCursor = () => {
     window.addEventListener('mouseover', handleMouseOver);
 
     const render = () => {
+      isRendering = true;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       for (let i = 0; i < particles.length; i++) {
@@ -81,31 +88,34 @@ const CustomCursor = () => {
         
         p.x += p.vx;
         p.y += p.vy;
-        p.size += 0.4;
-        p.life -= 0.025; // fade speed
+        p.size += 0.28;
+        p.life -= 0.035;
       }
       
       particles = particles.filter(p => p.life > 0);
-      animationFrameId = requestAnimationFrame(render);
+      if (particles.length > 0) {
+        animationFrameId = requestAnimationFrame(render);
+      } else {
+        isRendering = false;
+        animationFrameId = undefined;
+      }
     };
-    
-    render();
 
     return () => {
       window.removeEventListener('mousemove', mouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
       window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [cursorX, cursorY]);
 
   // The small dot that follows exactly
   const dotVariants = {
     default: {
-      x: mousePosition.x - 4,
-      y: mousePosition.y - 4,
       height: 8,
       width: 8,
+      marginLeft: -4,
+      marginTop: -4,
       backgroundColor: "#fff",
       mixBlendMode: "difference",
       opacity: 1,
@@ -116,10 +126,10 @@ const CustomCursor = () => {
       }
     },
     hover: {
-      x: mousePosition.x - 0,
-      y: mousePosition.y - 0,
       height: 0,
       width: 0,
+      marginLeft: 0,
+      marginTop: 0,
       backgroundColor: "#fff",
       mixBlendMode: "difference",
       opacity: 0,
@@ -129,10 +139,10 @@ const CustomCursor = () => {
   // The outer ring that gracefully lags
   const ringVariants = {
     default: {
-      x: mousePosition.x - 20,
-      y: mousePosition.y - 20,
       height: 40,
       width: 40,
+      marginLeft: -20,
+      marginTop: -20,
       backgroundColor: "transparent",
       border: "1px solid rgba(255, 255, 255, 0.5)",
       mixBlendMode: "difference",
@@ -144,10 +154,10 @@ const CustomCursor = () => {
       }
     },
     hover: {
-      x: mousePosition.x - 40,
-      y: mousePosition.y - 40,
       height: 80,
       width: 80,
+      marginLeft: -40,
+      marginTop: -40,
       backgroundColor: "rgba(255, 255, 255, 0.1)",
       border: "1px solid rgba(255, 255, 255, 0)",
       backdropFilter: "blur(2px)",
@@ -164,13 +174,15 @@ const CustomCursor = () => {
   return (
     <>
       <canvas ref={canvasRef} className="smoke-canvas" />
-      <motion.div
+      <Motion.div
         className="cursor-dot"
+        style={{ x: cursorX, y: cursorY }}
         variants={dotVariants}
         animate={isHovering ? "hover" : "default"}
       />
-      <motion.div
+      <Motion.div
         className="cursor-ring"
+        style={{ x: ringX, y: ringY }}
         variants={ringVariants}
         animate={isHovering ? "hover" : "default"}
       />

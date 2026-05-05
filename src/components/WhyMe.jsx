@@ -1,6 +1,6 @@
 import React from 'react';
 import './WhyMe.css';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import SpotlightCard from './ui/SpotlightCard';
 
 const reasons = [
@@ -33,7 +33,7 @@ const WhyMe = () => {
           
           <div className="why-scroll-list">
             {reasons.map((item) => (
-              <motion.div
+              <Motion.div
                 key={item.id}
                 initial={{ opacity: 0.18, y: 28, scale: 0.985 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -48,7 +48,7 @@ const WhyMe = () => {
                     <p className="why-desc">{item.desc}</p>
                   </div>
                 </SpotlightCard>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </div>

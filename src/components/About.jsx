@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import './About.css';
 import ProfileCard from './ui/ProfileCard';
 
@@ -9,7 +9,7 @@ const About = () => {
       <div className="container">
         <div className="about-grid">
           <div className="about-image-col">
-             <motion.div 
+             <Motion.div 
                initial={{ opacity: 0, scale: 0.9 }}
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
@@ -27,20 +27,20 @@ const About = () => {
                   enableTilt={true}
                   behindGlowEnabled={true}
                />
-             </motion.div>
+             </Motion.div>
           </div>
           
           <div className="about-content">
-            <motion.h2 
+            <Motion.h2 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="about-headline"
             >
               I BUILD DIGITAL EXPERIENCES THAT MERGE <span className="highlight">ART</span> WITH <span className="highlight">ENGINEERING</span>.
-            </motion.h2>
+            </Motion.h2>
             
-            <motion.div 
+            <Motion.div 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -56,7 +56,7 @@ const About = () => {
                 Based in Kerala, India, working globally. Focused on React, Performance, 
                 and Interaction Design that leaves a mark.
               </p>
-            </motion.div>
+            </Motion.div>
           </div>
         </div>
       </div>

@@ -93,6 +93,19 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.App {
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.App.is-loading {
+  opacity: 0;
+}
+
+.App.is-ready {
+  opacity: 1;
+}
+
 /* Noise overlay needs to adapt or just sit on top */
 body::after {
   content: "";
@@ -181,4 +194,49 @@ button {
 
 .clickable {
   cursor: pointer;
+}
+
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.loader-mark {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 14vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: 0;
+}
+
+.loader-track {
+  width: min(220px, 56vw);
+  height: 1px;
+  overflow: hidden;
+  background: var(--line-color);
+}
+
+.loader-track span {
+  display: block;
+  width: 45%;
+  height: 100%;
+  background: var(--text-color);
+  animation: loader-slide 0.9s ease-in-out infinite;
+}
+
+@keyframes loader-slide {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(245%);
+  }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import About from '../components/About';
 import '../components/About.css'; 
 import './AboutPage.css'; // Import the new specific styles
@@ -98,7 +98,7 @@ const AboutPage = () => {
           <h2>DISCOVER MY JOURNEY</h2>
           <div className="experience-list">
             {experienceData.map((exp, index) => (
-              <motion.div 
+              <Motion.div 
                 key={index}
                 className="experience-item"
                 initial={{ opacity: 0, y: 30 }}
@@ -117,7 +117,7 @@ const AboutPage = () => {
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </section>
@@ -130,7 +130,7 @@ const AboutPage = () => {
              <div className="timeline-line"></div>
 
              {educationData.map((item, index) => (
-               <motion.div 
+               <Motion.div 
                  key={index}
                  className="timeline-item"
                  initial={{ opacity: 0, x: -20 }}
@@ -152,7 +152,7 @@ const AboutPage = () => {
                       />
                     </div>
                  </div>
-               </motion.div>
+               </Motion.div>
              ))}
            </div>
         </section>
