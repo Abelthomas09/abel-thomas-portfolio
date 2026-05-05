@@ -28,8 +28,8 @@ const Dock = () => {
         <div className="dock-divider"></div>
         
         {/* Socials in Dock */}
-        <DockItem mouseX={mouseX} item={{ icon: <FaGithub />, id: 'github', label: 'GitHub', link: '#' }} />
-        <DockItem mouseX={mouseX} item={{ icon: <FaLinkedin />, id: 'linkedin', label: 'LinkedIn', link: '#' }} />
+        <DockItem mouseX={mouseX} item={{ icon: <FaGithub />, id: 'github', label: 'GitHub', link: 'https://github.com/Abelthomas09' }} />
+        <DockItem mouseX={mouseX} item={{ icon: <FaLinkedin />, id: 'linkedin', label: 'LinkedIn', link: 'https://www.linkedin.com/in/abel-thomas09' }} />
       </motion.div>
     </div>
   );
@@ -47,7 +47,10 @@ function DockItem({ mouseX, item }) {
   let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   const handleClick = () => {
-    if (item.link) return; // Handle external links separately if needed
+    if (item.link) {
+      window.open(item.link, '_blank', 'noopener,noreferrer');
+      return;
+    }
     const el = document.getElementById(item.id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };

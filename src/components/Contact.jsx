@@ -86,9 +86,9 @@ const Contact = () => {
           <div className="contact-links">
              <a href="mailto:hello@abelthomas.dev" className="email-link">HELLO@ABELTHOMAS.DEV</a>
              <div className="social-list">
-               <a href="#">LINKEDIN</a>
-               <a href="#">GITHUB</a>
-               <a href="#">TWITTER</a>
+               <a href="https://www.linkedin.com/in/abel-thomas09" target="_blank" rel="noreferrer">LINKEDIN</a>
+               <a href="https://github.com/Abelthomas09" target="_blank" rel="noreferrer">GITHUB</a>
+               <a href="/Abel-Thomas-Resume.pdf" download>RESUME</a>
              </div>
           </div>
 
@@ -135,8 +135,8 @@ const Contact = () => {
         </div>
         
         <div className="footer-credits">
-           <span>© 2023 ABEL THOMAS</span>
-           <span>EST. 2023</span>
+           <span>© 2026 ABEL THOMAS</span>
+           <span>EST. 2026</span>
         </div>
       </div>
     </section>

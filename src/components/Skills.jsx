@@ -5,23 +5,19 @@ import './Skills.css';
 const skillGroups = [
   {
     title: 'Frontend',
-    skills: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Responsive UI']
-  },
-  {
-    title: 'Styling & UI',
-    skills: ['Tailwind CSS', 'Material UI', 'Flexbox', 'CSS Grid', 'Figma to UI', 'Framer Motion']
+    skills: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'React.js', 'Next.js', 'React Native', 'Redux Toolkit', 'RTK Query', 'Tailwind CSS', 'SCSS', 'Bootstrap']
   },
   {
     title: 'Backend',
-    skills: ['Node.js', 'Express.js', 'MongoDB', 'REST APIs', 'Authentication', 'RBAC']
+    skills: ['Express.js', 'GraphQL', 'Node.js', 'OTP Authentication', 'Payment Gateway Integration (Razorpay)', 'REST APIs']
   },
   {
-    title: 'CMS & Tools',
-    skills: ['Headless CMS', 'WordPress', 'Git', 'GitHub', 'Performance Optimization', 'Cross-Browser Testing']
+    title: 'Database & Cloud',
+    skills: ['MongoDB', 'PostgreSQL']
   },
   {
-    title: 'Security Basics',
-    skills: ['Secure Coding', 'Vulnerability Assessment', 'XSS Awareness', 'SQL Injection Awareness', 'CSRF Awareness']
+    title: 'Tools & Platforms',
+    skills: ['Figma', 'Git', 'GitHub', 'Netlify', 'Postman', 'Render', 'Vercel', 'Amazon S3']
   }
 ];
 

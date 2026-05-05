@@ -56,7 +56,7 @@ const ProjectsPage = () => {
               transition: 'transform 0.3s'
             }}
           >
-            <div className="card-image" style={{marginBottom: '20px', overflow: 'hidden', aspectRatio: '16/9', border: '1px solid var(--line-color)'}}>
+            <div className="card-image" style={{marginBottom: '28px', overflow: 'hidden', aspectRatio: '16/9', border: '1px solid var(--line-color)'}}>
                <img 
                  src={project.image} 
                  alt={project.title} 
@@ -66,8 +66,16 @@ const ProjectsPage = () => {
                />
             </div>
             
-            <h3 style={{fontSize: '2rem', marginBottom: '10px'}}>{project.title}</h3>
-            <p style={{marginBottom: '20px', color: 'var(--secondary-text)'}}>{project.desc}</p>
+            <h3 style={{
+              fontSize: 'clamp(1.8rem, 4vw, 2.4rem)',
+              lineHeight: '1.12',
+              marginBottom: '18px'
+            }}>{project.title}</h3>
+            <p style={{
+              marginBottom: '24px',
+              color: 'var(--secondary-text)',
+              lineHeight: '1.55'
+            }}>{project.desc}</p>
             
             <div className="tech-stack" style={{display: 'flex', gap: '10px',  marginBottom: '30px', flexWrap: 'wrap'}}>
               {project.tech.map(t => (

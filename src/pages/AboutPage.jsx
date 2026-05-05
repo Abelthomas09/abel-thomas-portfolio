@@ -31,15 +31,15 @@ const experienceData = [
     ]
   },
   {
-    role: "Cyber Security Intern",
-    company: "TechbyHeart Pvt Ltd",
-    date: "Feb 2024 - March 2024",
+    role: "Python Flask Web Development Internship",
+    company: "Zuike Infotech (P) Ltd",
+    date: "2024",
     points: [
-      "Completed hands-on training in cybersecurity fundamentals and secure computing concepts.",
-      "Learned about common web security vulnerabilities such as XSS, SQL Injection, and CSRF.",
-      "Performed basic vulnerability assessment and security analysis on sample applications.",
-      "Gained exposure to secure coding practices and awareness of application security risks.",
-      "Understood basic concepts of ethical hacking, network security, and threat mitigation."
+      "Developed web applications using Python Flask with clean route handling and modular project structure.",
+      "Built dynamic pages using Flask templates, HTML, CSS, and JavaScript for responsive user experiences.",
+      "Implemented form handling, validation, and backend logic for user-driven web features.",
+      "Worked with REST API concepts and integrated server-side functionality with frontend interfaces.",
+      "Gained hands-on experience with database connectivity, CRUD operations, and debugging Flask applications."
     ]
   }
 ];
