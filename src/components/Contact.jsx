@@ -1,30 +1,41 @@
-import React, { useState } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
+import React, { memo, useEffect, useState } from 'react';
+import { FaArrowRight, FaDownload, FaTimes } from 'react-icons/fa';
 import './Contact.css';
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const RESUME_URL = '/Abel-Thomas-Resume.pdf';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
   const [status, setStatus] = useState('idle');
   const [feedback, setFeedback] = useState('');
+  const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((current) => ({
-      ...current,
-      [name]: value
-    }));
-  };
+  useEffect(() => {
+    if (!isResumePreviewOpen) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsResumePreviewOpen(false);
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isResumePreviewOpen]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const form = event.currentTarget;
+    const submission = new FormData(form);
     setStatus('sending');
     setFeedback('');
 
@@ -35,12 +46,12 @@ const Contact = () => {
     }
 
     const templateParams = {
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-      from_name: formData.name,
-      from_email: formData.email,
-      reply_to: formData.email
+      name: submission.get('name')?.toString().trim() ?? '',
+      email: submission.get('email')?.toString().trim() ?? '',
+      message: submission.get('message')?.toString().trim() ?? '',
+      from_name: submission.get('name')?.toString().trim() ?? '',
+      from_email: submission.get('email')?.toString().trim() ?? '',
+      reply_to: submission.get('email')?.toString().trim() ?? ''
     };
 
     try {
@@ -63,11 +74,7 @@ const Contact = () => {
 
       setStatus('success');
       setFeedback('MESSAGE SENT. I WILL GET BACK TO YOU SOON.');
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
+      form.reset();
     } catch {
       setStatus('error');
       setFeedback('MESSAGE FAILED. PLEASE TRY AGAIN OR EMAIL ME DIRECTLY.');
@@ -88,7 +95,7 @@ const Contact = () => {
              <div className="social-list">
                <a href="https://www.linkedin.com/in/abel-thomas09" target="_blank" rel="noreferrer">LINKEDIN</a>
                <a href="https://github.com/Abelthomas09" target="_blank" rel="noreferrer">GITHUB</a>
-               <a href="/Abel-Thomas-Resume.pdf" download>RESUME</a>
+               <button type="button" onClick={() => setIsResumePreviewOpen(true)}>RESUME</button>
              </div>
           </div>
 
@@ -98,8 +105,6 @@ const Contact = () => {
                 type="text"
                 name="name"
                 placeholder="NAME"
-                value={formData.name}
-                onChange={handleChange}
                 required
               />
             </div>
@@ -108,8 +113,6 @@ const Contact = () => {
                 type="email"
                 name="email"
                 placeholder="EMAIL"
-                value={formData.email}
-                onChange={handleChange}
                 required
               />
             </div>
@@ -118,8 +121,6 @@ const Contact = () => {
                 name="message"
                 placeholder="MESSAGE"
                 rows="4"
-                value={formData.message}
-                onChange={handleChange}
                 required
               ></textarea>
             </div>
@@ -139,8 +140,50 @@ const Contact = () => {
            <span>EST. 2026</span>
         </div>
       </div>
+
+      {isResumePreviewOpen && (
+        <div
+          className="resume-preview"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Resume preview"
+        >
+          <button
+            type="button"
+            className="resume-preview-backdrop"
+            aria-label="Close resume preview"
+            onClick={() => setIsResumePreviewOpen(false)}
+          />
+          <div className="resume-preview-panel">
+            <div className="resume-preview-header">
+              <h3>RESUME</h3>
+              <div className="resume-preview-actions">
+                <a href={RESUME_URL} download>
+                  <FaDownload />
+                  DOWNLOAD
+                </a>
+                <button
+                  type="button"
+                  aria-label="Close resume preview"
+                  onClick={() => setIsResumePreviewOpen(false)}
+                >
+                  <FaTimes />
+                </button>
+              </div>
+            </div>
+            <div className="resume-preview-scroll" tabIndex="0">
+              <iframe
+                className="resume-frame"
+                src={`${RESUME_URL}#toolbar=0&navpanes=0&view=FitH`}
+                title="Abel Thomas Resume Preview"
+                scrolling="no"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
-export default Contact;
+export default memo(Contact);

@@ -221,6 +221,7 @@ export default function Galaxy({
     let program;
     let animationFrameId;
     let hasRenderedFirstFrame = false;
+    let isVisible = true;
 
     const updateResolution = () => {
       if (!container) return;
@@ -266,9 +267,22 @@ export default function Galaxy({
     updateResolution();
     window.addEventListener('resize', updateResolution, false);
 
+    const startAnimation = () => {
+      if (!animationFrameId) {
+        animationFrameId = window.requestAnimationFrame(animate);
+      }
+    };
+
+    const stopAnimation = () => {
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+        animationFrameId = undefined;
+      }
+    };
+
     const animate = time => {
-      animationFrameId = window.requestAnimationFrame(animate);
-      if (document.hidden) return;
+      animationFrameId = undefined;
+      if (document.hidden || !isVisible) return;
 
       if (!disableAnimation) {
         program.uniforms.uTime.value = time * 0.001;
@@ -291,6 +305,16 @@ export default function Galaxy({
         hasRenderedFirstFrame = true;
         onReady?.();
       }
+
+      startAnimation();
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+      } else if (isVisible) {
+        startAnimation();
+      }
     };
 
     const handleMouseMove = event => {
@@ -306,7 +330,20 @@ export default function Galaxy({
     };
 
     container.appendChild(gl.canvas);
-    animationFrameId = window.requestAnimationFrame(animate);
+    const observer = 'IntersectionObserver' in window
+      ? new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      }, { threshold: 0 })
+      : null;
+
+    observer?.observe(container);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    startAnimation();
 
     if (mouseInteraction) {
       container.addEventListener('mousemove', handleMouseMove);
@@ -316,6 +353,8 @@ export default function Galaxy({
     return () => {
       window.cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', updateResolution);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      observer?.disconnect();
 
       if (mouseInteraction) {
         container.removeEventListener('mousemove', handleMouseMove);

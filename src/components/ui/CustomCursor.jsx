@@ -31,11 +31,17 @@ const CustomCursor = () => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
 
+      const target = e.target instanceof Element ? e.target : null;
+      if (target?.closest('input, textarea, select')) {
+        lastMouse = { x: e.clientX, y: e.clientY };
+        return;
+      }
+
       if (lastMouse.x !== null) {
         const dx = e.clientX - lastMouse.x;
         const dy = e.clientY - lastMouse.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const steps = Math.min(4, Math.max(1, Math.floor(distance / 18)));
+        const steps = Math.min(3, Math.max(1, Math.floor(distance / 24)));
         
         for (let i = 0; i < steps; i++) {
           const px = lastMouse.x + (dx * i) / steps;
@@ -47,11 +53,11 @@ const CustomCursor = () => {
             vx: (Math.random() - 0.5) * 0.8,
             vy: (Math.random() - 0.5) * 0.8 - 0.5,
             life: 1,
-            size: Math.random() * 14 + 16,
+            size: Math.random() * 10 + 12,
           });
         }
-        if (particles.length > 90) {
-          particles.splice(0, particles.length - 90);
+        if (particles.length > 56) {
+          particles.splice(0, particles.length - 56);
         }
       }
       lastMouse = { x: e.clientX, y: e.clientY };

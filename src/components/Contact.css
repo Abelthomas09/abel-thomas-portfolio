@@ -25,6 +25,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 100px;
     margin-bottom: 150px;
+    contain: layout paint;
 }
 
 .email-link {
@@ -47,15 +48,152 @@
     gap: 15px;
 }
 
-.social-list a {
+.social-list a,
+.social-list button {
     font-family: var(--font-sub);
     font-size: 1.1rem;
     color: var(--secondary-text);
     width: fit-content;
+    letter-spacing: 0;
 }
 
-.social-list a:hover {
+.social-list a:hover,
+.social-list button:hover {
     color: #fff;
+}
+
+.resume-preview {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.resume-preview-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    cursor: default;
+}
+
+.resume-preview-panel {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: min(980px, 100%);
+    height: min(88vh, 920px);
+    overflow: hidden;
+    background: var(--bg-color);
+    border: 1px solid var(--line-color);
+    box-shadow: 0 24px 90px rgba(0, 0, 0, 0.45);
+}
+
+.resume-preview-panel,
+.resume-preview-scroll {
+    scrollbar-color: rgba(255, 255, 255, 0.68) rgba(255, 255, 255, 0.08);
+    scrollbar-width: thin;
+}
+
+.resume-preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.resume-preview-header h3 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.resume-preview-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.resume-preview-actions a,
+.resume-preview-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    color: var(--text-color);
+    font-family: var(--font-sub);
+    font-size: 0.95rem;
+}
+
+.resume-preview-actions a {
+    padding: 0 14px;
+    border: 1px solid var(--line-color);
+}
+
+.resume-preview-actions a:hover,
+.resume-preview-actions button:hover {
+    color: #fff;
+    border-color: var(--text-color);
+}
+
+.resume-preview-actions button {
+    width: 42px;
+    border: 1px solid var(--line-color);
+}
+
+.resume-preview-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background:
+        linear-gradient(90deg, transparent calc(100% - 14px), rgba(255, 255, 255, 0.04) calc(100% - 14px)),
+        #111111;
+}
+
+.resume-preview-scroll:focus {
+    outline: none;
+}
+
+.resume-preview-scroll::-webkit-scrollbar {
+    width: 14px;
+}
+
+.resume-preview-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.06);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.resume-preview-scroll::-webkit-scrollbar-thumb {
+    min-height: 72px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.48));
+    border: 4px solid #111111;
+    border-radius: 8px;
+}
+
+.resume-preview-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.68));
+}
+
+.resume-preview-scroll::-webkit-scrollbar-thumb:active {
+    background: #ffffff;
+}
+
+.resume-frame {
+    display: block;
+    width: calc(100% + 32px);
+    height: 1320px;
+    border: 0;
+    background: #f3f3f3;
+    margin-right: -32px;
+    pointer-events: none;
 }
 
 /* Minimal Form */
@@ -63,6 +201,7 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    contain: layout paint;
 }
 
 .input-group input,
@@ -140,5 +279,33 @@
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 60px;
+    }
+}
+
+@media (max-width: 640px) {
+    .resume-preview {
+        padding: 12px;
+    }
+
+    .resume-preview-panel {
+        height: 86vh;
+    }
+
+    .resume-frame {
+        height: 1180px;
+    }
+
+    .resume-preview-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .resume-preview-actions {
+        width: 100%;
+    }
+
+    .resume-preview-actions a {
+        flex: 1;
     }
 }
