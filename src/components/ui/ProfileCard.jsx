@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import './ProfileCard.css';
 
 const DEFAULT_INNER_GRADIENT = 'var(--profile-card-inner-gradient)';
@@ -47,6 +48,7 @@ const ProfileCardComponent = ({
   handle = 'abelt',
   status = 'Online',
   contactText = 'Contact Me',
+  contactHref,
   showUserInfo = true,
   onContactClick
 }) => {
@@ -339,7 +341,8 @@ const ProfileCardComponent = ({
     [iconUrl, grainUrl, innerGradient, behindGlowColor, behindGlowSize, cardRadius]
   );
 
-  const handleContactClick = useCallback(() => {
+  const handleContactClick = useCallback((event) => {
+    event.stopPropagation();
     onContactClick?.();
   }, [onContactClick]);
 
@@ -477,7 +480,9 @@ const ProfileCardComponent = ({
                 transform: 'translateZ(2px)',
                 gridArea: '1 / -1',
                 borderRadius: cardRadius,
-                pointerEvents: 'none'
+                pointerEvents: 'auto',
+                position: 'relative',
+                zIndex: 6
               }}
             >
               <img
@@ -505,6 +510,7 @@ const ProfileCardComponent = ({
                     bottom: 'var(--ui-inset)',
                     left: 'var(--ui-inset)',
                     right: 'var(--ui-inset)',
+                    zIndex: 8,
                     background: 'var(--profile-card-panel)',
                     borderRadius: 'calc(max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias)))',
                     padding: '12px 14px'
@@ -533,9 +539,29 @@ const ProfileCardComponent = ({
                       <div className="text-sm leading-none pc-user-status">{status}</div>
                     </div>
                   </div>
-                  <button
+                  {contactHref ? (
+                    <Link
+                      className="border rounded-lg px-4 py-3 text-xs font-semibold cursor-pointer backdrop-blur-[10px] transition-all duration-200 ease-out hover-translate-y pc-contact-btn"
+                      to={contactHref}
+                      onClick={handleContactClick}
+                      onPointerDown={event => event.stopPropagation()}
+                      style={{
+                        pointerEvents: 'auto',
+                        display: 'block',
+                        gridArea: 'auto',
+                        borderRadius: '8px',
+                        color: 'var(--profile-card-text)',
+                        background: 'var(--profile-card-button)'
+                      }}
+                      aria-label={`Contact ${name || 'user'}`}
+                    >
+                      {contactText}
+                    </Link>
+                  ) : (
+                    <button
                     className="border rounded-lg px-4 py-3 text-xs font-semibold cursor-pointer backdrop-blur-[10px] transition-all duration-200 ease-out hover-translate-y pc-contact-btn"
                     onClick={handleContactClick}
+                    onPointerDown={event => event.stopPropagation()}
                     style={{
                       pointerEvents: 'auto',
                       display: 'block',
@@ -548,7 +574,8 @@ const ProfileCardComponent = ({
                     aria-label={`Contact ${name || 'user'}`}
                   >
                     {contactText}
-                  </button>
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -560,7 +587,8 @@ const ProfileCardComponent = ({
                 transform:
                   'translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px)',
                 gridArea: '1 / -1',
-                borderRadius: cardRadius
+                borderRadius: cardRadius,
+                zIndex: 7
               }}
             >
               <div className="w-full absolute flex flex-col pc-details-inner" style={{ top: '3em', display: 'flex', gridArea: 'auto' }}>
@@ -571,7 +599,7 @@ const ProfileCardComponent = ({
                     display: 'block',
                     gridArea: 'auto',
                     borderRadius: '0',
-                    pointerEvents: 'auto',
+                    pointerEvents: 'none',
                     userSelect: 'text',
                     WebkitUserSelect: 'text'
                   }}
@@ -588,7 +616,7 @@ const ProfileCardComponent = ({
                     display: 'block',
                     gridArea: 'auto',
                     borderRadius: '0',
-                    pointerEvents: 'auto',
+                    pointerEvents: 'none',
                     userSelect: 'text',
                     WebkitUserSelect: 'text'
                   }}

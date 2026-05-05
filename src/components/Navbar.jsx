@@ -11,6 +11,10 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const handleProfileContactClick = () => {
+    setIsOpen(false);
+  };
+
   const navLinks = [
     { name: 'HOME', path: '/' },
     { name: 'PROJECTS', path: '/projects' },
@@ -74,13 +78,15 @@ const Navbar = () => {
                 <ProfileCard 
                   name="Abel Thomas"
                   title="Software Engineer"
-                  handle="javicodes"
+                  handle="abelthomas"
                   status="Online"
                   contactText="Contact Me"
+                  contactHref="/contact"
                   avatarUrl="/profile.jpg"
                   showUserInfo={true}
                   enableTilt={true}
                   behindGlowEnabled={true}
+                  onContactClick={handleProfileContactClick}
                 />
               </Motion.div>
             </div>

@@ -78,7 +78,12 @@
 }
 
 .pc-details-wrap {
-  pointer-events: auto;
+  pointer-events: none;
+}
+
+.pc-contact-btn {
+  position: relative;
+  z-index: 12;
 }
 
 .pc-name,
